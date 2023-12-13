@@ -59,7 +59,7 @@ https://github.com/withastro/action
 
 
 
-
+<!-- 
 ## ♿ (Accessibility) Features
 
 
@@ -78,4 +78,4 @@ https://github.com/withastro/action
 - `.sr-only` utility class for screen reader only text content (hides text visually)
 - `prefers-reduced-motion` disables animations for users that have this preference turned on
 
-
+ -->
