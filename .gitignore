@@ -17,7 +17,3 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# oldsite
-_oldsite/admin/secure
-_oldsite/admin/secure/editors.php
-_oldsite/admin/secure/passwords.php
