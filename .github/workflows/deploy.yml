@@ -2,7 +2,7 @@
 # https://github.com/marketplace/actions/github-pages-overwriter
 
 
-name: Github Page Overwriter
+name: Deply to Github Pages branch
 
 on:
   push:
