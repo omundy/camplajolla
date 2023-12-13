@@ -1,0 +1,52 @@
+---
+const { citation } = Astro.props
+import { Str } from '@supercharge/strings'
+
+// EXAMPLE CITATION
+// MMST Disaster Drill at UCSD***http://www.calit2.net/events/popup.php?id=833^"An Actor Prepares" by Jordan Crandall***https://journals.uvic.ca/index.php/ctheory/article/view/14517
+
+let citations = []
+
+if (citation) {
+  // split citations
+  citations = citation.split('^')
+  // console.log(citations)
+  // split parts
+  for (let i = 0; i < citations.length; i++) {
+    if (citations[i].includes('***')) {
+      let parts = citations[i].split('***')
+      citations[i] = {
+        text: parts[0],
+        url: parts[1],
+      }
+    } else {
+      citations[i] = {
+        text: citations[i],
+        url: citations[i],
+      }
+    }
+  }
+}
+---
+
+<ol class="citation">
+  {
+    citation && (
+      <>
+        {citations.map((item) => (
+          <li>
+            <a href={item.url} target="_blank" style="">
+              {item.text}
+            </a>
+          </li>
+        ))}
+      </>
+    )
+  }
+</ol>
+
+<style lang="scss">
+  span.taxonomy {
+    display: inline-block;
+  }
+</style>

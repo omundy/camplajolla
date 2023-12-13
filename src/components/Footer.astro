@@ -1,0 +1,30 @@
+---
+import Navbar from './Navbar.astro'
+
+const currentYear = new Date().getFullYear()
+---
+
+<footer class="container-fluid py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <p>
+          &copy; {currentYear} - Camp La Jolla Military Park
+        </p>
+      </div>
+      <div class="col-12 col-md-4">
+        <Navbar />
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss" is:global>
+  footer {
+    background-color: var(--footer);
+  }
+  footer .navbar-nav {
+    list-style: none !important;
+    // background-color: red;
+  }
+</style>

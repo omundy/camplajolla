@@ -1,0 +1,163 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import * as MySQLData from '../lib/mysql-data.mjs'
+import { nl2br, formatDate } from '../lib/functions.mjs'
+
+const [data, graph] = await MySQLData.getDefensonomy()
+// console.log("data", data)
+// console.log("graph", graph)
+---
+
+<DefaultLayout title="Defensonomy">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Defensonomy</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid g-0 my-3">
+    <div class="row">
+      <div class="col">
+        <!-- {JSON.stringify(graph)} -->
+        <div id="cy" data-graph={JSON.stringify(graph)}></div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <table>
+          {
+            data.map((item) => (
+              <tr>
+                <td>{item.cat1}</td>
+                <td>{item.cat2}</td>
+                <td>{item.cat3}</td>
+                <td>{item.cat4}</td>
+                <td>
+                  <a href={item.slug}>{item.title}</a>
+                </td>
+              </tr>
+            ))
+          }
+        </table>
+      </div>
+    </div>
+  </div>
+</DefaultLayout>
+
+<style>
+  #cy {
+    width: 100%;
+    height: 600px;
+    display: block;
+  }
+</style>
+
+<script>
+  // get data
+  let dataset = document.querySelector('#cy').dataset
+  //   console.log(111, dataset)
+  let graph = JSON.parse(dataset.graph)
+  console.log(111, graph)
+
+  // setup https://js.cytoscape.org/ and add plugin
+  import cytoscape from 'cytoscape'
+  import coseBilkent from 'cytoscape-cose-bilkent'
+  cytoscape.use(coseBilkent)
+
+  var options = {
+    name: 'cose-bilkent',
+    // Called on `layoutready`
+    ready: function () {},
+    // Called on `layoutstop`
+    stop: function () {},
+    // 'draft', 'default' or 'proof"
+    // - 'draft' fast cooling rate
+    // - 'default' moderate cooling rate
+    // - "proof" slow cooling rate
+    quality: 'default',
+    // Whether to include labels in node dimensions. Useful for avoiding label overlap
+    nodeDimensionsIncludeLabels: false,
+    // number of ticks per frame; higher is faster but more jerky
+    refresh: 30,
+    // Whether to fit the network view after when done
+    fit: true,
+    // Padding on fit
+    padding: 10,
+    // Whether to enable incremental mode
+    randomize: true,
+    // Node repulsion (non overlapping) multiplier
+    nodeRepulsion: 4500,
+    // Ideal (intra-graph) edge length
+    idealEdgeLength: 80,
+    // Divisor to compute edge forces
+    edgeElasticity: 0.45,
+    // Nesting factor (multiplier) to compute ideal edge length for inter-graph edges
+    nestingFactor: 0.1,
+    // Gravity force (constant)
+    gravity: 0.25,
+    // Maximum number of iterations to perform
+    numIter: 2500,
+    // Whether to tile disconnected nodes
+    tile: true,
+    // Type of layout animation. The option set is {'during', 'end', false}
+    animate: false,
+    animationEasing: 'ease-out',
+    animationDuration: 500,
+    // Amount of vertical space to put between degree zero nodes during tiling (can also be a function)
+    tilingPaddingVertical: 8,
+    // Amount of horizontal space to put between degree zero nodes during tiling (can also be a function)
+    tilingPaddingHorizontal: 20,
+    // Gravity range (constant) for compounds
+    gravityRangeCompound: 1.5,
+    // Gravity force (constant) for compounds
+    gravityCompound: 1.0,
+    // Gravity range (constant)
+    gravityRange: 1.8,
+    // Initial cooling factor for incremental layout
+    initialEnergyOnIncremental: 0.5,
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // create graph
+    var cy = (window.cy = cytoscape({
+      container: document.getElementById('cy'),
+
+      ready: function () {
+        this.nodes().forEach(function (node) {
+          let width = [8, 15, 25]
+          let size = width[Math.floor(Math.random() * 3)]
+          node.css('width', size)
+          node.css('height', size)
+        })
+        this.layout(options).run()
+      },
+
+      elements: graph.elements,
+      style: [
+        {
+          selector: 'node',
+          style: {
+            'background-color': 'rgba(224, 126, 13,.5)',
+            label: 'data(id)',
+            color: 'rgba(20,20,20,1)',
+            'font-size': '7px',
+          },
+        },
+        {
+          selector: 'edge',
+          style: {
+            width: 1,
+            'line-color': '#aaa',
+          },
+        },
+      ],
+      // interaction
+      minZoom: 0.8,
+      maxZoom: 3.5,
+    }))
+  })
+</script>

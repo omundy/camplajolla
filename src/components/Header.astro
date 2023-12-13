@@ -1,0 +1,49 @@
+---
+import Navbar from './Navbar.astro'
+import { SkipLinks } from 'accessible-astro-components'
+---
+
+<header data-bs-theme="dark">
+  <SkipLinks />
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="/">Camp La Jolla Military Park</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbarSupportedContent">
+        <Navbar>
+          <!-- The original navigation was included here -->
+        </Navbar>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2 bg-dark text-white" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style lang="scss" is:global>
+  header .navbar-brand {
+    font-weight: 500;
+  }
+  .form-control:hover,
+  .form-control:focus {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    outline: none !important;
+    border-color: var(--orange) !important;
+    /* replace focus outline with something nicer */
+    /* outline: -webkit-focus-ring-color rgba(var(--rose), var(--optionOpacityActive)) 5px; */
+    /* added in individual color classes */
+  }
+</style>

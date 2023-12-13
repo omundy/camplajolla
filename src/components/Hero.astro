@@ -1,0 +1,18 @@
+---
+import { Icon } from 'astro-icon'
+import * as GLOBALS from '../lib/globals.mjs'
+const { src = `${GLOBALS.ASSETS_URL}/img/callan_marching_banner.jpg` } = Astro.props
+---
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col g-0">
+            <img src={src} alt="" class="img-fluid w-100">
+        </div>
+    </div>
+</div>
+
+<style lang="scss">
+
+</style>

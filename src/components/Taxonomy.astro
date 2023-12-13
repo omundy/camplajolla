@@ -1,0 +1,52 @@
+---
+const { cat1, cat2, cat3, cat4 } = Astro.props
+import { Str } from '@supercharge/strings'
+---
+
+<span class="taxonomy">
+  {
+    cat1 && (
+      <>
+        <a href="/collection/?q=" title={'search for ' + cat1}>
+          {cat1}
+        </a>
+      </>
+    )
+  }
+  {
+    cat2 && (
+      <>
+        <span>»</span>
+        <a href="/collection/?q=" title={'search for ' + cat2}>
+          {cat2}
+        </a>
+      </>
+    )
+  }
+  {
+    cat3 && (
+      <>
+        <span>»</span>
+        <a href="/collection/?q=" title={'search for ' + cat3}>
+          {cat3}
+        </a>
+      </>
+    )
+  }
+  {
+    cat4 && (
+      <>
+        <span>»</span>
+        <a href="/collection/?q=" title={'search for ' + cat4}>
+          {cat4}
+        </a>
+      </>
+    )
+  }
+</span>
+
+<style lang="scss">
+  span.taxonomy {
+    display: inline-block;
+  }
+</style>

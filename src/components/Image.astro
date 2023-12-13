@@ -1,0 +1,22 @@
+---
+const { img, title, type } = Astro.props
+import { Str } from '@supercharge/strings'
+import * as GLOBALS from '../lib/globals.mjs'
+
+// console.log(img)
+let images = img.split(',')
+// console.log(images)
+const { src = `${GLOBALS.ASSETS_URL}/img/project-images/${images[0]}` } = Astro.props
+---
+
+<img src={src} alt={title} class="img-fluid" />
+
+<style lang="scss">
+    img {
+        width: 100%;
+        height: auto;
+    }
+  img a {
+    text-decoration: none;
+  }
+</style>

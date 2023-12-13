@@ -1,0 +1,15 @@
+a,
+a:active,
+a:link,
+a:visited,
+a.nav-link:active,
+a.nav-link:link,
+a.nav-link:visited {
+  color: var(--orange);
+}
+a:hover,
+a:focus,
+a.nav-link:hover,
+a.nav-link:focus {
+  color: var(--orange-hover);
+}

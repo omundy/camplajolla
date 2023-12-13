@@ -1,0 +1,60 @@
+---
+const { lat, lng } = Astro.props
+---
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<script
+  is:inline
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+
+<div id="map" data-lat={lat} data-lng={lng}></div>
+
+<!-- <div>
+  <a href={url}>
+    <img src={'/img/project-images/' + images[0]} alt="" />
+    <p>{title}</p>
+    <p>{Str(text).words().slice(0, 12).join(' ')} ...</p>
+  </a>
+</div> -->
+
+<style lang="scss">
+  #map {
+    width: 100%;
+    height: 600px;
+  }
+</style>
+<script>
+  let dataset = document.querySelector('#map').dataset
+
+  const map = L.map('map').setView([dataset.lat, dataset.lng], 13)
+
+  // const tileLayer = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  const tileLayer = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}'
+
+  const tiles = L.tileLayer(tileLayer, {
+    minZoom: 0,
+    maxZoom: 20,
+    // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    attribution:
+      '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    ext: 'png',
+  }).addTo(map)
+
+  const marker = L.marker([dataset.lat, dataset.lng]).addTo(map).bindPopup('<b>Hello world!</b><br />I am a popup.')
+
+  let popup = L.popup()
+
+
+  function onMapClick(e) {
+    popup.setLatLng(e.latlng).setContent(`You clicked the map at ${e.latlng.toString()}`).openOn(map)
+  }
+  map.on('click', onMapClick)
+</script>
