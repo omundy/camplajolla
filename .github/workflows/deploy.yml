@@ -1,6 +1,8 @@
 
+# copy build folder to gh-pages branch
 # https://github.com/marketplace/actions/github-pages-overwriter
-
+# fixes errors
+# https://jonathansoma.com/everything/git/github-actions-403-error/
 
 name: Deply to Github Pages branch
 
