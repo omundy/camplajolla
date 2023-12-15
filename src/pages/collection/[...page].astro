@@ -2,8 +2,8 @@
 // SERVER SIDE SCRIPTS
 
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
-import { Pagination } from 'accessible-astro-components'
 import Card from '../../components/Card.astro'
+import Paginate from '../../components/Pagination.astro'
 import * as MySQLData from '../../lib/mysql-data.mjs'
 
 export async function getStaticPaths({ paginate }) {
@@ -17,31 +17,6 @@ export async function getStaticPaths({ paginate }) {
 }
 // export for page
 const { page } = Astro.props
-
-// add array for pagination
-page.pages = []
-for (let i = 1; i < page.lastPage; i++) {
-  page.pages.push(i)
-}
-
-console.log(
-  'start',
-  page.start,
-  'end',
-  page.end,
-  'size',
-  page.size,
-  'total',
-  page.total,
-  'currentPage',
-  page.currentPage,
-  'lastPage',
-  page.lastPage,
-  'url',
-  page.url,
-  'pages',
-  page.pages
-)
 
 // generate / use slug
 function getSlug(post) {
@@ -73,51 +48,7 @@ function getSlug(post) {
     </div>
     <div class="row">
       <div class="col-12 text-center">
-        <Pagination
-          firstPage={page.url.prev ? '/collection' : null}
-          previousPage={page.url.prev ? page.url.prev : null}
-          nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next ? `/collection/${Math.round(page.total / page.size)}` : null}
-          currentPage={page.currentPage}
-          totalPages={Math.round(page.total / page.size)}
-        />
-
-        <nav aria-label="Page navigation example">
-          <ul class="pagination pagination-secondary  justify-content-center">
-            {
-              page.url.prev && (
-                <li class="page-item">
-                  <a class="page-link" href={'/collection/' + page.url.prev} aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-              )
-            }
-            {
-              page.pages &&
-                page.pages.map((p) => (
-                  <li class="page-item">
-                    <a class="page-link" href={'/collection/' + p}>
-                      {p}
-                    </a>
-                  </li>
-                ))
-            }
-
-            {
-              page.url.prev && (
-                <li class="page-item">
-                  <a class="page-link" href={'/collection/' + page.url.prev} aria-label="e">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              )
-            }
-          </ul>
-        </nav>
-        <div class="my-2">
-          <em>{page.start + 1}–{page.end + 1} of {page.total}</em>
-        </div>
+        <Paginate page={page} />
       </div>
     </div>
   </section>
@@ -162,33 +93,4 @@ function getSlug(post) {
       grid-template-columns: repeat(6, 1fr);
     }
   }
-</style>
-
-<style lang="scss" is:global>
-  // https://github.com/markteekman/accessible-astro-components
-
-  .pagination {
-    --pagination-color: rgb(0,0,0,.4);
-    --bs-pagination-bg: rgba(0,0,0,0);
-    --bs-link-color: var(--pagination-color);
-    --bs-link-hover-color: rgb(0,0,0,.8);
-    --bs-border-color:var(--pagination-color);
-
-    // border-color: red;
-  }
-
-  //   body .pagination {
-  //     a:hover,
-  //     a:hover svg {
-  //     }
-  //     ul.pagination__list {
-  //       list-style: none !important;
-  //       list-style-type: none !important;
-  //       li {
-  //         list-style-type: none;
-  //         padding-left: 2em;
-  //         text-indent: -2em;
-  //       }
-  //     }
-  //   }
 </style>

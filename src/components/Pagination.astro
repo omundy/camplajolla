@@ -1,0 +1,135 @@
+---
+// import { Pagination } from 'accessible-astro-components'
+const { page } = Astro.props
+
+// add array for pagination
+page.pages = []
+for (let i = 1; i <= page.lastPage; i++) {
+  page.pages.push(i)
+}
+
+page.firstPage = page.pages[0]
+page.totalPages = Math.round(page.total / page.size)
+
+console.log(
+  'start',
+  page.start,
+  'end',
+  page.end,
+  'size',
+  page.size,
+  'total',
+  page.total,
+  'firstPage',
+  page.firstPage,
+  'currentPage',
+  page.currentPage,
+  'lastPage',
+  page.lastPage,
+  'totalPages',
+  page.totalPages,
+  'url',
+  page.url,
+  'pages',
+  page.pages
+)
+---
+
+<!-- <Pagination
+        firstPage={page.url.prev ? '/collection' : null}
+        previousPage={page.url.prev ? page.url.prev : null}
+        nextPage={page.url.next ? page.url.next : null}
+        lastPage={page.url.next ? `/collection/${Math.round(page.total / page.size)}` : null}
+        currentPage={page.currentPage}
+        totalPages={Math.round(page.total / page.size)}
+    /> -->
+
+<nav aria-label="Page navigation" class="my-3">
+  <ul class="pagination justify-content-center">
+    <!-- PREV -->
+    <li class={page.url.prev ? 'page-item' : 'page-item disabled'}>
+      <a class="page-link" href={'/collection/' + page.url.prev ? page.url.prev : ''} aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <!-- 1 -->
+    <li class={page.currentPage == 1 ? 'page-item active' : 'page-item'}>
+      <a class="page-link" href="/collection">1</a>
+    </li>
+
+    <!-- 2-[n] -->
+    {
+      page.pages &&
+        page.pages
+          .filter((p) => p > 1)
+          .map((p) => (
+            <li class={page.currentPage == p ? 'page-item active' : 'page-item'}>
+              <a class="page-link" href={'/collection/' + p}>
+                {p}
+              </a>
+            </li>
+          ))
+    }
+
+    <!-- LAST -->
+    <!-- <li class="page-item">
+      <a class="page-link" href={'/collection/' + page.lastPage}>{page.lastPage}</a>
+    </li> -->
+
+    <!-- NEXT -->
+    <li class={page.url.next ? 'page-item' : 'page-item disabled'}>
+      <a class="page-link" href={page.url.next ? page.url.next : ''} aria-label="Previous">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="my-2">
+    Page {page.currentPage} of {page.totalPages}
+</div>
+
+<!-- <pre
+  class="astro-code github-dark"
+  style="background-color:#24292e;color:#e1e4e8;overflow-x:auto"
+  tabindex="0"><code>Page {page.currentPage} of {page.totalPages}
+Items {page.start + 1}–{page.end + 1} of {page.total}</code></pre> -->
+
+<style lang="scss">
+  .pagination {
+    // --bs-pagination-color: var(--bs-link-color);
+    // --bs-pagination-hover-color: var(--bs-link-hover-color);
+    // --bs-pagination-focus-color: var(--bs-link-hover-color);
+    // --bs-pagination-bg: var(--background-light);
+    // --bs-pagination-hover-bg: var(--background-lightest);
+    // --bs-pagination-active-bg: var(--background-lighter);
+    // --bs-pagination-active-border-color: var(--background-dark);
+    --bs-pagination-focus-box-shadow: var(--bs-focus-ring-color);
+
+    li > a {
+      background-color: var(--background-light);
+      color: var(--bs-link-color);
+    }
+    li.disabled > a {
+      background-color: var(--background-dark);
+      color: #b2b2b2;
+    }
+    li > a:focus,
+    li > a:hover,
+    li > span:focus,
+    li > span:hover {
+      background-color: #eee;
+      border-color: #ddd;
+    }
+    .active > a {
+      color: white;
+      background-color: var(--bs-link-color) !important;
+      border: solid 1px var(--bs-link-color) !important;
+    }
+    .active > a:hover {
+      background-color: var(--bs-link-color) !important;
+      border: solid 1px var(--bs-link-color);
+    }
+  }
+</style>
