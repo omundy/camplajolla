@@ -1,6 +1,5 @@
 ---
 const { url, img, title, text } = Astro.props
-import { Str } from '@supercharge/strings'
 import * as GLOBALS from '../lib/globals.mjs'
 
 // console.log(img)
@@ -10,11 +9,11 @@ const { src = `${GLOBALS.ASSETS_URL}/img/project-images/${images[0]}` } = Astro.
 ---
 
 <div class="card rounded-0" style="max-width: 18rem;">
-  <a href={url} tabindex="0">
+  <a href={url}>
     <div class="row g-0">
       <div class="col-5">
         <!-- <div class="card-img rounded-start" style={'background-image: url(' + src + ');'}></div> -->
-        <img src={src} alt="" class="img-fluid" style="width:101%" />
+        <img src={src} alt="" class="card-img img-fluid rounded-0" style="width:100%" />
       </div>
       <div class="col-7">
         <div class="card-body m-0 p-0">
@@ -28,14 +27,14 @@ const { src = `${GLOBALS.ASSETS_URL}/img/project-images/${images[0]}` } = Astro.
 <style lang="scss">
   .card {
     --bs-card-border-width: 0 !important;
-    border-left: 0.4rem solid var(--background);
+    border-left: 0.45rem solid var(--background);
     overflow: hidden;
-    background-color: var(--background-50);
+    background-color: var(--background-light);
     height: 90px;
     transition-property: transform;
     transition-duration: 0.2s;
     filter: grayscale(1);
-    
+
     a {
       color: var(--text-color);
       text-decoration: none;
@@ -46,29 +45,24 @@ const { src = `${GLOBALS.ASSETS_URL}/img/project-images/${images[0]}` } = Astro.
     &:focus-within,
     &:focus-within a:focus {
       box-shadow: none !important;
-      background-color: var(--background-50);
+      background-color: var(--background-light);
     }
 
     &:hover,
     &:focus,
     &:focus-within {
-      border-left: 0.43rem solid var(--orange);
+      border-left: 0.45rem solid var(--orange);
       filter: saturate(1.1);
     }
 
     .card-img {
       width: 100%;
-      height: 160px;
-      background-repeat: none;
-      background-size: cover;
-      background-position: center center;
+      height: 90px;
+      max-height: 90px;
+      //   background-repeat: none;
+      //   background-size: cover;
+      //   background-position: center center;
     }
-    //   @media (min-width: 992px) {
-    .card-img {
-      width: 100%;
-      height: 100px;
-    }
-    //   }
 
     .card-title {
       box-sizing: border-box;

@@ -1,5 +1,4 @@
 ---
-// import { Pagination } from 'accessible-astro-components'
 const { page } = Astro.props
 
 // add array for pagination
@@ -11,38 +10,29 @@ for (let i = 1; i <= page.lastPage; i++) {
 page.firstPage = page.pages[0]
 page.totalPages = Math.round(page.total / page.size)
 
-console.log(
-  'start',
-  page.start,
-  'end',
-  page.end,
-  'size',
-  page.size,
-  'total',
-  page.total,
-  'firstPage',
-  page.firstPage,
-  'currentPage',
-  page.currentPage,
-  'lastPage',
-  page.lastPage,
-  'totalPages',
-  page.totalPages,
-  'url',
-  page.url,
-  'pages',
-  page.pages
-)
+// console.log(
+//   'start',
+//   page.start,
+//   'end',
+//   page.end,
+//   'size',
+//   page.size,
+//   'total',
+//   page.total,
+//   'firstPage',
+//   page.firstPage,
+//   'currentPage',
+//   page.currentPage,
+//   'lastPage',
+//   page.lastPage,
+//   'totalPages',
+//   page.totalPages,
+//   'url',
+//   page.url,
+//   'pages',
+//   page.pages
+// )
 ---
-
-<!-- <Pagination
-        firstPage={page.url.prev ? '/collection' : null}
-        previousPage={page.url.prev ? page.url.prev : null}
-        nextPage={page.url.next ? page.url.next : null}
-        lastPage={page.url.next ? `/collection/${Math.round(page.total / page.size)}` : null}
-        currentPage={page.currentPage}
-        totalPages={Math.round(page.total / page.size)}
-    /> -->
 
 <nav aria-label="Page navigation" class="my-3">
   <ul class="pagination justify-content-center">
@@ -87,7 +77,7 @@ console.log(
 </nav>
 
 <div class="my-2">
-    Page {page.currentPage} of {page.totalPages}
+  Page {page.currentPage} of {page.totalPages}
 </div>
 
 <!-- <pre

@@ -13,13 +13,19 @@
     - Change character set on remote
     - Copy local database to remote
 
-
-## Site
+<!-- 
+## Dev Notes
 
 - Built on top of this theme 
     - https://github.com/markteekman/accessible-astro-starter
     - https://accessible-astro.netlify.app/
     - https://accessible-astro.dev/accessible-components
+    - https://github.com/markteekman/accessible-astro-components
+    - Components
+        - `SiteMeta.astro` SEO component for setting custom meta data on different pages
+        - `[...page].astro` and `[post].astro` demonstrate the use of dynamic routes and provide a basic blog (or collection) with breadcrumbs and pagination
+ -->
+
 
 
 
@@ -59,13 +65,6 @@
     }
 }    
 ```
-
-
-
-## Components
-
-- `SiteMeta.astro` SEO component for setting custom meta data on different pages
-- `[...page].astro` and `[post].astro` demonstrate the use of dynamic routes and provide a basic blog (or collection) with breadcrumbs and pagination
 
 
 

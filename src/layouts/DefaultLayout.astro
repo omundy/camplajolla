@@ -49,13 +49,22 @@ const {
     </main>
     <Footer />
     <style lang="scss" is:global>
+      // theme settings
       :root {
-        --background: #e8e6de;
-        --background-50: #f4f3ed;
+        --text-color: var(--bs-body-color);
+        --background-darkest: rgb(199, 197, 182);
+        --background-darker: rgb(202, 200, 183);
+        --background-dark: rgb(214, 212, 198);
+        --background: rgb(220, 218, 206);
+        --background-light: rgb(231, 229, 219);
+        --background-lighter: rgb(237, 236, 228);
+        --background-lightest: rgb(242, 240, 234);
         --footer: #777;
         --orange: rgb(224, 126, 13);
         --orange-hover: #eb8d22;
-        --text-color: var(--bs-body-color);
+        --bs-link-color: var(--orange);
+        --bs-link-hover-color: var(--orange-hover);
+        --bs-focus-ring-color: var(--orange-hover);
       }
       // expand low content pages
       html,
@@ -69,54 +78,28 @@ const {
           min-height: 600px;
         }
       }
-      //   // theme settings
-      //   :root {
-      //     --radius-small: 3px;
-      //     --radius-large: 6px;
-      //     --gap-default: 2rem;
-      //     --font-measure: 70ch;
-      //     --font-family-default: 'Open Sans', sans-serif;
-      //     --font-family-special: 'Open Sans', sans-serif;
-      //     // light theme
-      //     --font-color: var(--neutral-900);
-      //     --action-color: var(--primary-300);
-      //     --action-color-state: var(--primary-500);
-      //     --background: var(--neutral-100);
-      //     --primary-background: var(--primary-100);
-      //     --neutral-background: var(--neutral-200);
-      //   }
 
-    //   a,
-    //   a:active,
-    //   a:link,
-    //   a:visited,
-      a.nav-link:active,
-      a.nav-link:link,
-      a.nav-link:visited {
-        color: var(--orange);
+      header {
+        a,
+        a:active,
+        a:link,
+        a:visited,
+        a.nav-link:active,
+        a.nav-link:link,
+        a.nav-link:visited {
+          color: var(--orange);
+        }
+        a:hover,
+        a:focus,
+        a.nav-link:hover,
+        a.nav-link:focus {
+          color: var(--orange-hover);
+        }
       }
-    //   a:hover,
-    //   a:focus,
-      a.nav-link:hover,
-      a.nav-link:focus {
-        color: var(--orange-hover);
-      }
-
       pre {
         padding: 1rem;
         border-radius: 0.35rem;
         border: 2px solid var(--action-color);
-      }
-
-      body .pagination a {
-        &:hover,
-        &:focus-visible {
-          background-color: var(--action-color-state);
-
-          svg path {
-            stroke: white;
-          }
-        }
       }
     </style>
 

@@ -1,13 +1,13 @@
 ---
 import Navbar from './Navbar.astro'
-import { SkipLinks } from 'accessible-astro-components'
 ---
 
 <header data-bs-theme="dark">
-  <SkipLinks />
+  <a href="#main-content" class="skip">Skip to main content</a>
+
   <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand text-light" href="/">Camp La Jolla Military Park</a>
+      <a class="navbar-brand text-light my-1" href="/">Camp La Jolla Military Park</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -32,18 +32,34 @@ import { SkipLinks } from 'accessible-astro-components'
   </nav>
 </header>
 
-<style lang="scss" is:global>
-  header .navbar-brand {
-    font-weight: 500;
-  }
-  .form-control:hover,
-  .form-control:focus {
-    box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    outline: none !important;
-    border-color: var(--orange) !important;
-    /* replace focus outline with something nicer */
-    /* outline: -webkit-focus-ring-color rgba(var(--rose), var(--optionOpacityActive)) 5px; */
-    /* added in individual color classes */
+<style lang="scss">
+  header {
+    .navbar-brand {
+      font-weight: 500;
+    }
+    .form-control:hover,
+    .form-control:focus {
+      box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      outline: none !important;
+      border-color: var(--orange) !important;
+      /* replace focus outline with something nicer */
+      /* outline: -webkit-focus-ring-color rgba(var(--rose), var(--optionOpacityActive)) 5px; */
+      /* added in individual color classes */
+    }
+
+    .skip {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .skip:focus {
+      position: static;
+      width: auto;
+      height: auto;
+    }
   }
 </style>

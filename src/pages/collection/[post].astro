@@ -2,14 +2,12 @@
 // SERVER SIDE SCRIPTS
 
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
-import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import * as MySQLData from '../../lib/mysql-data.mjs'
 import { nl2br, formatDate } from '../../lib/functions.mjs'
 import Image from '../../components/Image.astro'
 import Map from '../../components/Map.astro'
 import Taxonomy from '../../components/Taxonomy.astro'
 import CitationList from '../../components/CitationList.astro'
-
 
 export async function getStaticPaths() {
   // get external data
@@ -43,14 +41,15 @@ const { post } = Astro.props
 
 <DefaultLayout title={post.title} description={post.body} url={post.title}>
   <div class="container">
-    <div class="mt-12">
-      <Breadcrumbs>
-        <BreadcrumbsItem href="/" label="Home" />
-        <BreadcrumbsItem href="/collection" label="Collection" />
-        <BreadcrumbsItem currentPage={true} label={post.title} />
-      </Breadcrumbs>
-    </div>
+    <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/collection">Collection</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{post.title}</li>
+      </ol>
+    </nav>
   </div>
+
   <section class="container my-3">
     <h1>{post.title}</h1>
   </section>
