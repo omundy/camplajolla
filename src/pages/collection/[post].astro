@@ -187,7 +187,7 @@ const { post } = Astro.props
       </div>
       <div class="col-12 col-md-6 my-2">
         <Image img={post.img_lg} title={post.title} type="lg" />
-        <Map lat={post.lat} lng={post.lng} />
+        <Map items={JSON.stringify([post])} />
       </div>
     </div>
   </section>

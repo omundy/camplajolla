@@ -23,14 +23,16 @@ const connection = await mysql.createConnection({
 
 export async function getData() {
   const [results, fields] = await connection.execute('SELECT * FROM `defense_items`')
-  console.log(results[0].title)
+  //   console.log(results[0].title)
+  //   console.log(results)
   return results
 }
 
 export async function getDefensonomy() {
   const [r, fields] = await connection.execute(
-    'SELECT id,title,cat1,cat2,cat3,cat4 FROM defense_items ORDER BY cat1 ASC, cat2 ASC, cat3 ASC,cat4;'
+    'SELECT id,slug,title,cat1,cat2,cat3,cat4 FROM defense_items ORDER BY cat1 ASC, cat2 ASC, cat3 ASC,cat4;'
   )
+  // console.log(r);
 
   // populate and return the elements prop of a cytoscape graph
   let g = {
@@ -49,7 +51,8 @@ export async function getDefensonomy() {
       cat3 = r[i].cat3,
       cat4 = r[i].cat4
 
-    //   console.log(results[i].cat1);
+    // console.log(r[i].slug)
+    // console.log(r[i].cat1);
     if (cat1) {
       g.elements.nodes.push({ data: { id: cat1 } })
     }

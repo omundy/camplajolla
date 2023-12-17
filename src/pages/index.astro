@@ -1,21 +1,31 @@
 ---
+// SERVER SIDE SCRIPTS
+
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+import * as MySQLData from '../lib/mysql-data.mjs'
+import { nl2br, formatDate } from '../lib/functions.mjs'
 import Hero from '../components/Hero.astro'
+import Map from '../components/Map.astro'
 // import Feature from '../components/Feature.astro'
 // import Counter from '../components/Counter.astro'
+
+let data = await MySQLData.getData()
+// console.log("data", data)
+// console.log("graph", graph)
+// data.map((item) => console.log(item.slug))
 ---
 
-<DefaultLayout title="Home">
+<DefaultLayout title="Home" nopadding="true">
   <Hero />
 
-  <div class="container">
+  <div class="container-fluid g-0">
     <div class="row">
       <div class="col">
-        <h1>Hello, World</h1>
+        <!-- <h1>Hello, World</h1> -->
+        <Map items={JSON.stringify(data)} />
+        <!-- {JSON.stringify(data)} -->
+        <!-- {JSON.stringify(graph)} -->
       </div>
     </div>
   </div>
 </DefaultLayout>
-
-
-

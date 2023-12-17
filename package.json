@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "type": "module",
     "author": "Owen Mundy",
-    "homepage": "https://omundy.github.io/camplajolla.org/",
+    "homepage": "https://omundy.github.io/camplajolla",
     "scripts": {
         "dev": "astro dev",
         "start": "astro dev",

@@ -19,7 +19,7 @@ const [data, graph] = await MySQLData.getDefensonomy()
   <div class="container-fluid g-0 my-3">
     <div class="row">
       <div class="col">
-        {JSON.stringify(graph)}
+        <!-- {JSON.stringify(graph)} -->
         <div id="cy" data-graph={JSON.stringify(graph)}></div>
       </div>
     </div>
@@ -36,7 +36,7 @@ const [data, graph] = await MySQLData.getDefensonomy()
                 <td>{item.cat3}</td>
                 <td>{item.cat4}</td>
                 <td>
-                  <a href={item.slug}>{item.title}</a>
+                  <a href={'/collection/' + item.slug}>{item.title}</a>
                 </td>
               </tr>
             ))

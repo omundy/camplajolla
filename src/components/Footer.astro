@@ -4,12 +4,13 @@ import Navbar from './Navbar.astro'
 const currentYear = new Date().getFullYear()
 ---
 
-<footer class="container-fluid py-3">
+<footer class="container-fluid py-4">
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-8">
         <p>
-          &copy; {currentYear} - Camp La Jolla Military Park
+           Camp La Jolla Military Park<br>
+           &copy; 2008–{currentYear}
         </p>
       </div>
       <div class="col-12 col-md-4">
@@ -19,12 +20,13 @@ const currentYear = new Date().getFullYear()
   </div>
 </footer>
 
-<style lang="scss" is:global>
+<style lang="scss">
   footer {
-    background-color: var(--footer);
-  }
-  footer .navbar-nav {
-    list-style: none !important;
-    // background-color: red;
+    background-color: var(--footer-bg);
+    color: var(--background);
+    .navbar-nav {
+      list-style: none !important;
+      // background-color: red;
+    }
   }
 </style>

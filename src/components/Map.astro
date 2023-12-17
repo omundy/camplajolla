@@ -1,13 +1,21 @@
 ---
-const { lat, lng } = Astro.props
+import 'leaflet/dist/leaflet.css'
+
+// DEMONSTRATES: Two ways to get server vars into page script
+
+// 1. declared here (received from calling component), and sent in HTML via dataset
+const { items } = Astro.props
+// 2. declared here, and sent to JS via "define:vars"
+let note = 'leaflet is awesome'
+// console.log(note)
 ---
 
-<link
+<!-- <link
   rel="stylesheet"
   href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
   crossorigin=""
-/>
+/> -->
 <script
   is:inline
   src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -15,46 +23,77 @@ const { lat, lng } = Astro.props
   crossorigin=""
 ></script>
 
-<div id="map" data-lat={lat} data-lng={lng}></div>
-
-<!-- <div>
-  <a href={url}>
-    <img src={'/img/project-images/' + images[0]} alt="" />
-    <p>{title}</p>
-    <p>{Str(text).words().slice(0, 12).join(' ')} ...</p>
-  </a>
-</div> -->
+<div id="map" data-items={items}></div>
 
 <style lang="scss">
   #map {
     width: 100%;
-    height: 600px;
+    height: 450px;
   }
 </style>
-<script>
-  let dataset = document.querySelector('#map').dataset
 
-  const map = L.map('map').setView([dataset.lat, dataset.lng], 13)
+<script is:inline define:vars={{ note }}>
+  //   console.log(note)
+  let dataset = document.querySelector('#map').dataset
+  let items = JSON.parse(dataset.items)
+  // console.log(items)
+
+  const map = L.map('map').setView([items[0].lat, items[0].lng], 13)
 
   // const tileLayer = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
-  const tileLayer = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}'
+  // see https://alexurquhart.github.io/free-tiles/
+  const tileLayer =
+    'https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
 
   const tiles = L.tileLayer(tileLayer, {
     minZoom: 0,
     maxZoom: 20,
     // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    attribution:
-      '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    attribution: '<a href="https://leafletjs.com/">Leaflet</a>',
     ext: 'png',
   }).addTo(map)
 
-  const marker = L.marker([dataset.lat, dataset.lng]).addTo(map).bindPopup('<b>Hello world!</b><br />I am a popup.')
+  //   delete L.Icon.Default.prototype._getIconUrl
+  //   L.Icon.Default.mergeOptions({
+  //     iconRetinaUrl: `https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png`,
+  //     iconUrl: `https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png`,
+  //     shadowUrl: `https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png`,
+  //   })
 
+  const markerIcon = L.icon({
+    iconSize: [25, 41],
+    iconAnchor: [10, 41],
+    popupAnchor: [2, -40],
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+  })
+
+  // add markers
+  let markers = []
+  if (items && items.length > 0) {
+    for (let i = 0; i < items.length; i++) {
+      //   console.log(items[i])
+      // create marker
+      let marker = L.marker([items[i].lat, items[i].lng], { icon: markerIcon })
+        .addTo(map)
+        .bindPopup(returnPopupHtml(items[i]))
+      // set color
+      //   marker._icon.style.filter = 'hue-rotate(20deg)'
+      // icon?
+      // https://github.com/lennardv2/Leaflet.awesome-markers
+      // add to array
+      markers.push(marker)
+    }
+  }
+  function returnPopupHtml(d) {
+    return `<a href="/collection/${d.slug}">${d.title}</a><br>${d.text.split(' ').slice(0, 20).join(' ')}...`
+  }
   let popup = L.popup()
 
-
-  function onMapClick(e) {
-    popup.setLatLng(e.latlng).setContent(`You clicked the map at ${e.latlng.toString()}`).openOn(map)
-  }
-  map.on('click', onMapClick)
+  //   show lat/lng
+  //   function onMapClick(e) {
+  //     popup.setLatLng(e.latlng).setContent(`You clicked the map at ${e.latlng.toString()}`).openOn(map)
+  //   }
+  //   map.on('click', onMapClick)
 </script>
