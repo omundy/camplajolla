@@ -1,4 +1,6 @@
 ---
+console.log(Astro.locals)
+
 import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
@@ -19,7 +21,8 @@ const {
   url,
   image = `${GLOBALS.ASSETS_URL}/img/social-preview-image.png`,
   author = 'Owen Mundy',
-  nopadding = Astro.props.nopadding
+  nopadding = Astro.props.nopadding,
+  locals = Astro.locals,
 } = Astro.props
 ---
 
@@ -46,7 +49,7 @@ const {
   </head>
   <body>
     <Header />
-    <main id="main-content" class={nopadding ? "" : "py-3"}>
+    <main id="main-content" class={nopadding ? '' : 'py-3'}>
       <slot />
     </main>
     <Footer />
@@ -108,5 +111,26 @@ const {
     </style>
 
     <script src={bootstrap}></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L45DJ5MLL5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-L45DJ5MLL5')
+    </script>
+
+    <script type="text/javascript">
+      window.sc_project = 3628150
+      window.sc_invisible = 1
+      window.sc_security = 'e1d0ad51'
+    </script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+
+    <script is:inline define:vars={{ locals }}>
+    console.log("locals",locals)
+    </script>
   </body>
 </html>

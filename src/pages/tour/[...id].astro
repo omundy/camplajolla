@@ -1,0 +1,33 @@
+---
+// REDIRECT TOUR PAGES TO THEIR ARTICLES
+
+import * as MySQLData from '../../lib/mysql-data.mjs'
+
+export async function getStaticPaths() {
+  let data = await MySQLData.getData()
+console.log(data)
+  return data.map((post) => {
+    return {
+      params: { id: post.id },
+      props: { post },
+    }
+  })
+}
+const { post, locals = Astro.locals } = Astro.props
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting to {post.slug}</title>
+    <meta http-equiv="Refresh" content={"0; url='" + locals.domain + '/collection/' + post.slug + "'"} />
+    <link rel="canonical" href={post.slug} />
+  </head>
+
+  <!-- <body>
+    <h1>{JSON.stringify(locals)}</h1>
+    <p>Redirecting to: {locals.domain + '/collection/' + post.slug}</p>
+  </body> -->
+
+</html>
