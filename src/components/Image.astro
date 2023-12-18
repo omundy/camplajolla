@@ -1,19 +1,19 @@
 ---
-const { img, title, type } = Astro.props
+const { img, title, classList } = Astro.props
 import * as GLOBALS from '../lib/globals.mjs'
-
-// console.log(img)
-let images = img.split(',')
-// console.log(images)
-const { src = `${GLOBALS.ASSETS_URL}/img/project-images/${images[0]}` } = Astro.props
+const { src = GLOBALS.getProjectImagePath(img) } = Astro.props
 ---
 
-<img src={src} alt={title} class="img-fluid" />
+{src && <img src={src} alt={title} class={classList} />}
 
 <style lang="scss">
   img {
     width: 100%;
     height: auto;
+
+    &.thumb {
+      height: 90px;
+    }
   }
   img a {
     text-decoration: none;

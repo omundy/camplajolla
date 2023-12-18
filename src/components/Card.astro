@@ -1,19 +1,15 @@
 ---
 const { url, img, title, text } = Astro.props
-import * as GLOBALS from '../lib/globals.mjs'
-
-// console.log(img)
-let images = img.split(',')
-// console.log(images)
-const { src = `${GLOBALS.ASSETS_URL}/img/project-images/${images[0]}` } = Astro.props
+import Image from '../components/Image.astro'
 ---
 
 <div class="card rounded-0" style="max-width: 18rem;">
   <a href={url}>
-    <div class="row g-0">
+    <div class="row g-0"> 
       <div class="col-5">
         <!-- <div class="card-img rounded-start" style={'background-image: url(' + src + ');'}></div> -->
-        <img src={src} alt="" class="card-img img-fluid rounded-0" style="width:100%" />
+        <Image img={img} title={title} classList="card-img img-fluid rounded-0 thumb" />
+        <!-- <img src={src} alt="" class="card-img img-fluid rounded-0" style="width:100%" /> -->
       </div>
       <div class="col-7">
         <div class="card-body m-0 p-0">
@@ -59,9 +55,6 @@ const { src = `${GLOBALS.ASSETS_URL}/img/project-images/${images[0]}` } = Astro.
       width: 100%;
       height: 90px;
       max-height: 90px;
-      //   background-repeat: none;
-      //   background-size: cover;
-      //   background-position: center center;
     }
 
     .card-title {

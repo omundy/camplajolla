@@ -1,0 +1,47 @@
+---
+// SERVER SIDE SCRIPTS
+
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+// search works but not onload. will finish another day
+// also a bug in image paths on gh-pages
+---
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+
+<DefaultLayout title="Home">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-10 offset-md-1">
+        <h1>Search</h1>
+
+        <div id="search" class="my-3"></div>
+      </div>
+    </div>
+  </div>
+</DefaultLayout>
+
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', async (event) => {
+    // get search params
+    const urlSearchParams = new URLSearchParams(window.location.search)
+    const params = Object.fromEntries(urlSearchParams.entries())
+    console.log('params', params)
+
+    let pagefind = new PagefindUI({
+      element: '#search',
+      pageSize: 10,
+      showSubResults: true,
+      excerptLength: 50,
+      highlightParam: 'highlight',
+    })
+
+    // let input = document.querySelector('.pagefind-ui__search-input')
+    // input.value = params.q
+    // input.dispatchEvent(
+    //   new KeyboardEvent('keydown', {
+    //     key: ' '
+    //   })
+    // )
+  })
+</script>

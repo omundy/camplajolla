@@ -36,7 +36,7 @@ export const paths = defineMiddleware((context, next) => {
   if (context.url.pathname === '/tour') {
     // console.log('🏀 REDIRECT')
     let url = new URL('/collection', context.locals.domain)
-    console.log(url)
+    // console.log(url)
     return Response.redirect(url)
   }
 

@@ -44,7 +44,7 @@ export async function getStaticPaths() {
       //   console.log(rel)
       post.rel = []
       rel.map((id) => {
-    // if not null and not the same post
+        // if not null and not the same post
         if (postsById[id] && post.id != id) {
           post.rel.push(postsById[id])
         }
@@ -125,7 +125,7 @@ const { post } = Astro.props
                     </a>
                   </td>
                   <td>
-                    <a href={'/collection/?q=' + post.what} title={'search for ' + post.what}>
+                    <a href={'/search/?q=' + post.what} title={'search for ' + post.what}>
                       {post.what}
                     </a>
                   </td>
@@ -199,7 +199,7 @@ const { post } = Astro.props
                     {post.rel.map((item) => (
                       <span class="thumb">
                         <a href={item.slug} alt={item.title} style="">
-                          <Image img={item.img} title={item.title} type="sm" />
+                          <Image img={item.img} title={item.title} classList="img-fluid" />
                         </a>
                       </span>
                     ))}
@@ -229,26 +229,30 @@ const { post } = Astro.props
         </table>
       </div>
       <div class="col-12 col-md-6 my-2">
-        <Image img={post.img_lg} title={post.title} type="lg" />
+        <Image img={post.img_lg} title={post.title} classList="img-fluid" />
         <Map items={JSON.stringify([post])} />
       </div>
     </div>
   </section>
 
   <style lang="scss">
-    table.post-table * {
-      border-color: #ccc;
-      background-color: transparent !important;
-    }
-    .title {
-      width: 25%;
-    }
-    .thumb {
-      width: 90px;
-      height: 90px;
-      max-height: 90px;
-      display: inline-block;
-      margin: 0.5rem 0.5rem 0.5rem 0;
+    table {
+      &.post-table * {
+        border-color: #ccc;
+        background-color: transparent !important;
+      }
+      tr td {
+        .title {
+          width: 25%;
+        }
+        .thumb {
+          width: 90px;
+          height: 90px;
+          max-height: 90px;
+          display: inline-block;
+          margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+      }
     }
   </style>
 </DefaultLayout>

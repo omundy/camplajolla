@@ -7,24 +7,26 @@
 - Launch Notes
     - Edit all records
     - Regenerate all slugs
-    - Push repo and turn on pages
-    - Point site to .io
-- Not needed
-    - Change character set on remote
-    - Copy local database to remote
 
-<!-- 
-## Dev Notes
 
-- Built on top of this theme 
-    - https://github.com/markteekman/accessible-astro-starter
-    - https://accessible-astro.netlify.app/
-    - https://accessible-astro.dev/accessible-components
-    - https://github.com/markteekman/accessible-astro-components
-    - Components
-        - `SiteMeta.astro` SEO component for setting custom meta data on different pages
-        - `[...page].astro` and `[post].astro` demonstrate the use of dynamic routes and provide a basic blog (or collection) with breadcrumbs and pagination
- -->
+<!-- ## Dev Notes
+
+Built on top of this theme 
+- https://github.com/markteekman/accessible-astro-starter
+- https://accessible-astro.netlify.app/
+- https://accessible-astro.dev/accessible-components
+- Components
+    - `SiteMeta.astro` SEO component for setting custom meta data on different pages
+    - `[...page].astro` and `[post].astro` demonstrate the use of dynamic routes and provide a basic blog (or collection) with breadcrumbs and pagination
+    - Replaces all [accessible-astro-components](https://github.com/markteekman/accessible-astro-components) with Bootstrap components 
+        - https://getbootstrap.com/docs/5.3/components/breadcrumb/
+        - https://getbootstrap.com/docs/5.3/components/buttons/
+        - https://getbootstrap.com/docs/5.3/components/card/
+        - Also https://leafletjs.com/
+- Relative links are kind of a pain
+    - Manage them manually, or use...
+    - https://www.npmjs.com/package/astro-relative-links -->
+
 
 
 
