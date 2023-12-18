@@ -11,8 +11,8 @@ const domain = {
 const subdirectories = /\/tour\/|\/collection\//g
 
 export const paths = defineMiddleware((context, next) => {
-  // console.log('middleware')
-  //   console.log('context.url', context.url.href)
+//   console.log('middleware')
+//   console.log('context.url', context.url.href)
 
   // url
   context.locals.href = context.url.href
@@ -40,6 +40,6 @@ export const paths = defineMiddleware((context, next) => {
     return Response.redirect(url)
   }
 
-  //   console.log('context.locals', context.locals)
+    // console.log('context.locals', context.locals)
   return next()
 })

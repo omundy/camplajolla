@@ -3,6 +3,8 @@ import mdx from '@astrojs/mdx'
 import compress from 'astro-compress'
 import relativeLinks from 'astro-relative-links'
 
+// console.log("astro.config")
+
 // https://astro.build/config
 
 export default defineConfig({
