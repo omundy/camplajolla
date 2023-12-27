@@ -13,7 +13,7 @@ export async function getStaticPaths({ paginate }) {
 
   // get data, paginate
   let data = await MySQLData.getData()
-  return paginate(data, { pageSize: 24 })
+  return paginate(data, { pageSize: 30 })
 }
 // export for page
 const { page } = Astro.props

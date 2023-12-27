@@ -198,7 +198,7 @@ const { post } = Astro.props
                   <td>
                     {post.rel.map((item) => (
                       <span class="thumb">
-                        <a href={item.slug} alt={item.title} style="">
+                        <a href={'/collection/' + item.slug} alt={item.title} style="">
                           <Image img={item.img} title={item.title} classList="img-fluid" />
                         </a>
                       </span>

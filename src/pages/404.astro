@@ -1,17 +1,27 @@
 ---
+// SERVER SIDE SCRIPTS
+
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+import Hero from '../components/Hero.astro'
+
+// export for page
+const { page } = Astro.props
 ---
 
-<DefaultLayout title="404">
-  <section class="my-12">
-    <div class="container">
-      <h1>404</h1>
-    </div>
-  </section>
-  <section class="my-12">
-    <div class="space-content container">
-      <p class="text-2xl">This page does not exist. Don't worry though, we got you.</p>
-      <a class="button" href={Astro.site}>Let's get you home Astronout 🚀</a>
+<DefaultLayout title="404" nopadding="true">
+  <Hero />
+
+  <section class="container">
+    <div class="row">
+      <div class="col">
+        <h1>404</h1>
+        <p>This page does not exist.</p>
+        <a class="btn btn-dark" href={Astro.site}>Head back home</a>
+      </div>
     </div>
   </section>
 </DefaultLayout>
+
+<script>
+    console.log(Astro.site)
+</script>
