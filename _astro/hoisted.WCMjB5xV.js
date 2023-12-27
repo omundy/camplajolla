@@ -1,0 +1,1 @@
+import"./hoisted.HBhEFnSz.js";console.log(Astro.site);
