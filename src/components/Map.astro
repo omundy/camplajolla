@@ -10,19 +10,6 @@ let note = 'leaflet is awesome'
 // console.log(note)
 ---
 
-<!-- <link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-  crossorigin=""
-/> -->
-<script
-  is:inline
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-  crossorigin=""
-></script>
-
 <div id="map" data-items={items}></div>
 
 <style lang="scss">
@@ -33,32 +20,35 @@ let note = 'leaflet is awesome'
 </style>
 
 <script is:inline define:vars={{ note }}>
-  //   console.log(note)
+  //   console.log('note', note)
+</script>
+
+<script>
+  // @ts-nocheck
+
+  import 'leaflet/dist/leaflet.css'
+  import 'leaflet'
+
   let dataset = document.querySelector('#map').dataset
   let items = JSON.parse(dataset.items)
   // console.log(items)
 
   const map = L.map('map').setView([items[0].lat, items[0].lng], 13)
 
+  // original OSM tiles
   // const tileLayer = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
-  // see https://alexurquhart.github.io/free-tiles/
+  // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+
+  // Better tiles found @ https://alexurquhart.github.io/free-tiles/
   const tileLayer =
     'https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
 
   const tiles = L.tileLayer(tileLayer, {
     minZoom: 0,
     maxZoom: 20,
-    // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    attribution: '<a href="https://leafletjs.com/">Leaflet</a>',
+    attribution: '',
     ext: 'png',
   }).addTo(map)
-
-  //   delete L.Icon.Default.prototype._getIconUrl
-  //   L.Icon.Default.mergeOptions({
-  //     iconRetinaUrl: `https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png`,
-  //     iconUrl: `https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png`,
-  //     shadowUrl: `https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png`,
-  //   })
 
   const markerIcon = L.icon({
     iconSize: [25, 41],

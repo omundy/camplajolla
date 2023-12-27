@@ -8,10 +8,18 @@
     "scripts": {
         "dev": "astro dev",
         "start": "astro dev",
+        
+        "prebuild": "",
         "build": "astro build && cp ./{.gitattributes,.gitignore} ./dist",
+        "postbuild": "npm run pagefind",
+
+        "pagefind": "pagefind --site ./dist",
+        "postpagefind": "cp -r dist/pagefind public/", 
+        "previewpagefind": "npm run build && pagefind --site dist --serve",
+
+
         "preview": "astro preview",
         "astro": "astro",
-        "postbuild": "pagefind --site dist",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist --branch gh-pages --dotfiles"
     },

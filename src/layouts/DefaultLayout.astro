@@ -4,9 +4,12 @@
 import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+
 // import '../assets/scss/styles.scss'
+
+// Load and inject css in the page
 import 'bootstrap/dist/css/bootstrap.min.css'
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js?url'
+
 import * as GLOBALS from '../lib/globals.mjs'
 
 const favicon = `${GLOBALS.ASSETS_URL}/img/icons-share/favicon.svg`
@@ -110,10 +113,13 @@ const {
       }
     </style>
 
-    <script src={bootstrap}></script>
+    <script>
+      import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+    </script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L45DJ5MLL5"></script>
     <script>
+      // @ts-nocheck
       window.dataLayer = window.dataLayer || []
       function gtag() {
         dataLayer.push(arguments)
@@ -127,10 +133,10 @@ const {
       var sc_invisible = 1
       var sc_security = 'e1d0ad51'
     </script>
-    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script> -->
 
     <script is:inline define:vars={{ locals }}>
-    // console.log("locals",locals)
-    </script> -->
+      // console.log("locals",locals)
+    </script>
   </body>
 </html>

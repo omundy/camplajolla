@@ -2,6 +2,8 @@
 # based on markdown-page.md
 layout: ../layouts/MarkdownLayout.astro
 title: Archivist's statement
+
+# Note also: Astro has an MDX feature which let's you use components in a markdown file
 ---
 
 # Archivist's statement

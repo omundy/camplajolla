@@ -78,7 +78,10 @@ Built on top of this theme
 - [Discord](https://discord.com/channels/830184174198718474/)
 
 
+## Typescript considerations
 
+- [Add `// @ts-nocheck` to the top of the `<script>` tag](https://stackoverflow.com/a/77722897/441878) (the client side script) to silence all the Typescript errors in your `.astro` files. It saves from adding `// @ts-ignore` to each line.
+- Maybe also try?... In VS Code add this to your settings.json file `"typescript.validate.enable": false,`
 
 
 
