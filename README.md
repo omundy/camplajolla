@@ -85,6 +85,12 @@ Built on top of this theme
 
 
 
+## Pagefind
+
+- Awesome, dig in the code for implementation and docs https://pagefind.app/docs/
+- Copy built files to public for local testing https://chrispennington.blog/blog/pagefind-static-search-for-astro-sites/
+- Add URL query params to the box and start search https://kiko.io/post/Pagefind-UI-and-URL-Parameters/
+
 
 
 <!-- 

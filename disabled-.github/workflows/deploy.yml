@@ -4,6 +4,10 @@
 # fixes errors
 # https://jonathansoma.com/everything/git/github-actions-403-error/
 
+# ^ this seems like a nice concept
+# but using https://www.npmjs.com/package/gh-pages was way easier
+
+
 name: Deply to Github Pages branch
 
 on:

@@ -8,16 +8,12 @@
     "scripts": {
         "dev": "astro dev",
         "start": "astro dev",
-        
         "prebuild": "",
         "build": "astro build && cp ./{.gitattributes,.gitignore} ./dist",
         "postbuild": "npm run pagefind",
-
         "pagefind": "pagefind --site ./dist",
-        "postpagefind": "cp -r dist/pagefind public/", 
+        "postpagefind": "cp -r dist/pagefind public/",
         "previewpagefind": "npm run build && pagefind --site dist --serve",
-
-
         "preview": "astro preview",
         "astro": "astro",
         "predeploy": "npm run build",
