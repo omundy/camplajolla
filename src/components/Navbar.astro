@@ -1,9 +1,11 @@
 ---
+const { location } = Astro.props
+console.log(location)
 import * as GLOBALS from '../lib/globals.mjs'
 const brochure = `${GLOBALS.ASSETS_URL}/brochure.pdf`
 ---
 
-<ul class="navbar-nav mb-lg-0 mb-2 ms-auto">
+<ul id={location} class="navbar-nav mb-lg-0 mb-2 ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="/collection">Park Database</a>
   </li>
@@ -17,21 +19,28 @@ const brochure = `${GLOBALS.ASSETS_URL}/brochure.pdf`
     <a class="nav-link" href="/search">Search</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href={brochure}>Brochure
-        <!-- https://icon-sets.iconify.design/ion/open-outline/ -->
-    <svg class="mb-1 me-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"
-      ><path
-        fill="none"
-        stroke="white"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="32"
-        d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48M336 64h112v112M224 288L440 72"
-      ></path></svg
-    ></a>
+    <a class="nav-link" href={brochure}
+      >Brochure
+      <!-- https://icon-sets.iconify.design/ion/open-outline/ -->
+      <svg class="mb-1 me-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"
+        ><path
+          fill="none"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="32"
+          d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48M336 64h112v112M224 288L440 72"
+        ></path></svg
+      ></a
+    >
   </li>
 </ul>
 
-<script></script>
-
-<style lang="scss" is:global></style>
+<style lang="scss">
+  #navbar-ul-footer {
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+    // background-color: red;
+  }
+</style>

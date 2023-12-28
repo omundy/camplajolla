@@ -1,5 +1,7 @@
 ---
 import Navbar from './Navbar.astro'
+import * as GLOBALS from '../lib/globals.mjs'
+const logo = `${GLOBALS.ASSETS_URL}/img/clj-logo-white-brown-clear-100px.png`
 ---
 
 <header data-bs-theme="dark">
@@ -7,7 +9,9 @@ import Navbar from './Navbar.astro'
 
   <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand text-light my-1" href="/">Camp La Jolla Military Park</a>
+      <a class="navbar-brand text-light my-1" href="/"> 
+        <img src={logo} style="max-width: 1.6rem;" alt="Camp La Jolla Military Park shield icon">
+        Camp La Jolla Military Park</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -20,7 +24,7 @@ import Navbar from './Navbar.astro'
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar-collapse collapse" id="navbarSupportedContent">
-        <Navbar>
+        <Navbar location="navbar-ul-header">
           <!-- The original navigation was included here -->
         </Navbar>
         <!-- <form class="d-flex" role="search">

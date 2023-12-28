@@ -1,6 +1,5 @@
 ---
 import Navbar from './Navbar.astro'
-
 const currentYear = new Date().getFullYear()
 ---
 
@@ -14,7 +13,7 @@ const currentYear = new Date().getFullYear()
         </p>
       </div>
       <div class="col-12 col-md-4">
-        <Navbar />
+        <Navbar location="navbar-ul-footer" />
       </div>
     </div>
   </div>
@@ -24,9 +23,5 @@ const currentYear = new Date().getFullYear()
   footer {
     background-color: var(--footer-bg);
     color: var(--background);
-    .navbar-nav {
-      list-style: none !important;
-      // background-color: red;
-    }
   }
 </style>
