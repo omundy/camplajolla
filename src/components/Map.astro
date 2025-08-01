@@ -77,7 +77,7 @@ let note = 'leaflet is awesome'
     }
   }
   function returnPopupHtml(d) {
-    return `<a href="/collection/${d.slug}">${d.title}</a><br>${d.text.split(' ').slice(0, 20).join(' ')}...`
+    return `<a href="./collection/${d.slug}">${d.title}</a><br>${d.text.split(' ').slice(0, 20).join(' ')}...`
   }
   let popup = L.popup()
 
