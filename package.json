@@ -44,5 +44,8 @@
         "prettier-plugin-astro": "^0.8.0",
         "sass": "^1.49.9",
         "svgo": "^2.8.0"
+    },
+    "dependencies": {
+        "dotenv": "^17.2.1"
     }
 }

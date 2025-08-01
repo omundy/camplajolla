@@ -10,6 +10,11 @@
 // https://www.npmjs.com/package/mysql
 // https://www.npmjs.com/package/nodejs-mysql
 
+import * as dotenv from 'dotenv'
+dotenv.config()
+// console.log(process.env.DB_PASS); 
+
+
 // only this one worked with Astro, using async operations
 // https://www.npmjs.com/package/mysql2
 import mysql from 'mysql2/promise'
@@ -18,6 +23,7 @@ import mysql from 'mysql2/promise'
 const connection = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
+  password: process.env.DB_PASS,
   database: 'camp_la_jolla',
 })
 
