@@ -1,7 +1,7 @@
 
 # Camp La Jolla
 
-(cc) 2008-2024 Owen Mundy
+(cc) 2008-present Owen Mundy
 
 
 
@@ -63,17 +63,6 @@ Previous now unused attempt to build to root dir
 
 
 
-
-## Astro Resources
-
-- Astro documentation https://docs.astro.build/
-- Astro themes https://astro.new/
-
-
-## Typescript considerations
-
-- [Add `// @ts-nocheck` to the top of the `<script>` tag](https://stackoverflow.com/a/77722897/441878) (the client side script) to silence all the Typescript errors in your `.astro` files. It saves from adding `// @ts-ignore` to each line.
-- Maybe also try?... In VS Code add this to your settings.json file `"typescript.validate.enable": false,`
 
 
 
