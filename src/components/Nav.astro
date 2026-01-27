@@ -1,11 +1,9 @@
 ---
-const { location } = Astro.props
-console.log(location)
 import * as GLOBALS from '../lib/globals.mjs'
 const brochure = `${GLOBALS.ASSETS_URL}/brochure.pdf`
 ---
 
-<ul id={location} class="navbar-nav mb-lg-0 mb-2 ms-auto">
+<ul class="navbar-nav mb-lg-0 mb-2 ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="/collection">Park Database</a>
   </li>
@@ -36,11 +34,4 @@ const brochure = `${GLOBALS.ASSETS_URL}/brochure.pdf`
   </li>
 </ul>
 
-<style lang="scss">
-  #navbar-ul-footer {
-    list-style: none !important;
-    margin: 0;
-    padding: 0;
-    // background-color: red;
-  }
-</style>
+

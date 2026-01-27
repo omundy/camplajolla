@@ -1,5 +1,5 @@
 ---
-import Navbar from './Navbar.astro'
+import Nav from './Nav.astro'
 import * as GLOBALS from '../lib/globals.mjs'
 const logo = `${GLOBALS.ASSETS_URL}/img/clj-logo-white-brown-clear-100px.png`
 ---
@@ -24,9 +24,7 @@ const logo = `${GLOBALS.ASSETS_URL}/img/clj-logo-white-brown-clear-100px.png`
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar-collapse collapse" id="navbarSupportedContent">
-        <Navbar location="navbar-ul-header">
-          <!-- The original navigation was included here -->
-        </Navbar>
+        <Nav />
         <!-- <form class="d-flex" role="search">
           <input class="form-control me-2 bg-dark text-white" type="search" placeholder="Search" aria-label="Search" />
           <button class="btn btn-outline-light" type="submit">Search</button>
