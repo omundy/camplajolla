@@ -20,12 +20,12 @@
         "deploy": "gh-pages -d dist --branch gh-pages --dotfiles"
     },
     "devDependencies": {
-        "@astrojs/mdx": "^2.0.1",
-        "@astrojs/node": "^7.0.1",
+        "@astrojs/mdx": "^4.3.13",
+        "@astrojs/node": "^9.5.2",
         "@supercharge/strings": "^2.0.0",
         "@typescript-eslint/eslint-plugin": "^5.50.0",
         "@typescript-eslint/parser": "^5.50.0",
-        "astro": "^4.0.4",
+        "astro": "^5.16.15",
         "astro-compress": "^2.0.6",
         "astro-icon": "^0.7.3",
         "astro-relative-links": "^0.3.5",

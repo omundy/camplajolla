@@ -9,9 +9,8 @@
 ## Dev Notes
 
 - Uses Astro SSG (static site generation)
-    - `[...page].astro` and `[post].astro` demonstrate the use of dynamic routes (within SSG) and provide a basic blog (or collection) with breadcrumbs and pagination
+    - `[...page].astro` and `[post].astro` enable dynamic routes and provide a basic blog (or collection) with breadcrumbs and pagination
 - Based on [accessible-astro-starter](https://github.com/markteekman/accessible-astro-starter) theme 
-    - `SiteMeta.astro` SEO component for setting custom meta data on different pages
 - Uses Bootstrap and replaces all [accessible-astro-components](https://github.com/markteekman/accessible-astro-components) with Bootstrap components like: [breadcrumb](https://getbootstrap.com/docs/5.3/components/breadcrumb/), [buttons](https://getbootstrap.com/docs/5.3/components/buttons/), [card](https://getbootstrap.com/docs/5.3/components/card/)
 - Uses [Leaflet.js](https://leafletjs.com/) for the map 
 - Relative links are kind of a pain. Manage them manually, or use [astro-relative-links](https://www.npmjs.com/package/astro-relative-links ) 
@@ -23,7 +22,7 @@
 
 ## Deploying Astro to Github Pages 
 
-[Deploying](https://docs.astro.build/en/guides/deploy/github/) to Github Pages is easy *if* all your resources are online. This was not my case:
+[Deploying](https://docs.astro.build/en/guides/deploy/github/) to Github Pages is easy *if* all your resources are online. Otherwise you need to do something different...
 
 - **Local database** - All project data is stored in a local MySQL database, so [none](https://github.com/withastro/github-pages) of the Github Pages [deploy scripts](https://github.com/withastro/action) worked (they couldn't access the data!). ✅ So I had to build locally somehow...
 - **Deploying to a subpath** - the repo was not my main URL `omundy.github.io` but a repo `omundy.github.io/camplajolla` which makes the root paths difficult to set up. (✅ see this [postbuild](https://dev.to/jonas_duri/use-astro-with-gitlab-pages-or-github-pages-3eb7) article)
@@ -72,25 +71,3 @@ Previous now unused attempt to build to root dir
 - Copy built files to public for local testing https://chrispennington.blog/blog/pagefind-static-search-for-astro-sites/
 - Add URL query params to the box and start search https://kiko.io/post/Pagefind-UI-and-URL-Parameters/
 
-
-
-<!-- 
-## ♿ (Accessibility) Features
-
-
-- Prettier integration with `prettier-plugin-astro`
-- ESLint integration with strict accessibility settings for `eslint-plugin-jsx-a11y`
-- Markdown and MDX support with examples included in the theme
-- Uses the awesome `astro-icon` package for the icons
-- Excellent Lighthouse/PageSpeed scores
-- Accessible landmarks such as `header`, `main`, `footer`, `section` and `nav`
-- `404.astro` provides a custom 404 error page which you can adjust to your needs
-- `Header.astro` component included in the `DefaultLayout.astro` layout
-- `Footer.astro` component included in the `DefaultLayout.astro` layout
-- `SkipLinks.astro` component to skip to either the main menu or the main content
-- `Navigation.astro` component with keyboard accessible (dropdown) navigation (arrow keys, escape key)
-
-- `.sr-only` utility class for screen reader only text content (hides text visually)
-- `prefers-reduced-motion` disables animations for users that have this preference turned on
-
- -->
