@@ -11,7 +11,7 @@ import Taxonomy from '../../components/Taxonomy.astro'
 import CitationList from '../../components/CitationList.astro'
 
 export async function getStaticPaths() {
-  // get external data
+  // get external data (leaving this old example)
   // const data = await fetch('https://jsonplaceholder.typicode.com/posts').then((response) => response.json())
   let data = await MySQLData.getData()
 
@@ -198,11 +198,13 @@ const { post } = Astro.props
                   <td>See also</td>
                   <td>
                     {post.rel.map((item) => (
-                      <span class="thumb">
-                        <a href={'/collection/' + item.slug} alt={item.title} style="">
-                          <Image img={item.img} title={item.title} classList="img-fluid" />
-                        </a>
-                      </span>
+                      item.img && (
+                        <span class="thumb">
+                          <a href={'/collection/' + item.slug} alt={item.title} style="">
+                            <Image img={item.img} title={item.title} classList="img-fluid" />
+                          </a>
+                        </span>
+                      )
                     ))}
                   </td>
                 </tr>
