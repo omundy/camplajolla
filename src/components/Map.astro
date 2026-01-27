@@ -31,7 +31,7 @@ let note = 'leaflet is awesome'
 
   let dataset = document.querySelector('#map').dataset
   let items = JSON.parse(dataset.items)
-  // console.log(items)
+  // console.log("items", items)
 
   const map = L.map('map').setView([items[0].lat, items[0].lng], 13)
 
@@ -40,8 +40,7 @@ let note = 'leaflet is awesome'
   // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 
   // Better tiles found @ https://alexurquhart.github.io/free-tiles/
-  const tileLayer =
-    'https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
+  const tileLayer = 'https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
 
   const tiles = L.tileLayer(tileLayer, {
     minZoom: 0,

@@ -1,6 +1,7 @@
 ---
-const { title, description, url, image, author } = Astro.props
+// SEO component for setting custom meta data on different pages
 
+const { title, description, url, image, author } = Astro.props
 let subtitle = 'Camp La Jolla Military Park'
 ---
 
@@ -17,6 +18,7 @@ let subtitle = 'Camp La Jolla Military Park'
 <meta property="og:image" content={Astro.site ? `${Astro.site.href}${image}` : image} />
 
 <!-- twitter card -->
+<!-- FUCK ELON -->
 
 <!-- page title -->
 <title>{title} - {subtitle}</title>

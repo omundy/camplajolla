@@ -58,9 +58,9 @@ const [data, graph] = await MySQLData.getDefensonomy()
 <script>
   // get data
   let dataset = document.querySelector('#cy').dataset
-  //   console.log(111, dataset)
+  //   console.log("dataset"", dataset)
   let graph = JSON.parse(dataset.graph)
-//   console.log(111, graph)
+//   console.log("graph", graph)
 
   // setup https://js.cytoscape.org/ and add plugin
   import cytoscape from 'cytoscape'
